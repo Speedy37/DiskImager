@@ -15,6 +15,7 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+[Rr]eleaseMT/
 x64/
 x86/
 bld/
@@ -68,6 +69,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+*.Designer.cs
 
 # Chutzpah Test files
 _Chutzpah*
