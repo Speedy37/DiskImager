@@ -319,7 +319,7 @@ void liblzma_wrapper::LZMAStream::Flush()
 
 			int64_t avail = outlen - strm->avail_out;
 			if (avail > 0)
-				stream->Write(gc_buf, 0, avail);
+				stream->Write(gc_buf, 0, (int)avail);
 		} while (strm->avail_in > 0);
 	}
 }
@@ -347,6 +347,6 @@ void liblzma_wrapper::LZMAStream::Write(cli::array<unsigned char, 1> ^buffer, in
 
 		int64_t avail = outlen - strm->avail_out;
 		if (avail > 0)
-			stream->Write(gc_buf, 0, avail);
+			stream->Write(gc_buf, 0, (int)avail);
 	}
 }
