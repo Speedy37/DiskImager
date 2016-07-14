@@ -9,18 +9,18 @@ using System.Globalization;
 
 namespace DiskImager
 {
-    [ImplementPropertyChanged]
     public partial class DriveSelection : UserControl
     {
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register(
                 "Source", typeof(ISource), typeof(DriveSelection),
                 new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnValueChanged)));
+        private List<DiskDrive> drives;
 
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             DriveSelection self = (DriveSelection)d;
-            self.DriveListChanged();
+            self.DriveListChanged((ISource) e.NewValue);
         }
 
         public DriveSelection()
@@ -38,17 +38,18 @@ namespace DiskImager
                 Dispatcher.Invoke(() => { RefreshDriveList(); });
                 return;
             }
-            Drives = DiskDrive.Shared.Drives.FindAll(x => IsExternalDrive(x));
-            DriveListChanged();
+            var drive = Source;
+            drives = DiskDrive.Shared.Drives.FindAll(x => IsExternalDrive(x));
+            drive_list.ItemsSource = drives;
+            DriveListChanged(drive);
         }
 
-        private void DriveListChanged()
+        private void DriveListChanged(ISource drive)
         {
-            var drive = Source;
             if (drive != null)
-                drive = Drives.Find(x => x.DeviceID == ((DiskDrive)drive).DeviceID);
+                drive = drives.Find(x => x.DeviceID == ((DiskDrive)drive).DeviceID);
             else
-                drive = Drives.Find(x => true);
+                drive = drives.Find(x => true);
             Source = drive;
         }
         
@@ -60,8 +61,6 @@ namespace DiskImager
                    (type == DiskDrive.EMediaType.External) ||
                    (type == DiskDrive.EMediaType.FixedHardDisk && busType == DiskDrive.EInterfaceType.USB);
         }
-
-        public List<DiskDrive> Drives { get; set; }
 
         public ISource Source
         {

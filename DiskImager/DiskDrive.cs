@@ -4,6 +4,7 @@ using System.Management;
 using System.IO;
 using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace DiskImager
 {
@@ -40,7 +41,7 @@ namespace DiskImager
                     WqlEventQuery q = new WqlEventQuery();
                     q.EventClassName = "__InstanceOperationEvent";
                     q.WithinInterval = new TimeSpan(0, 0, 1);
-                    q.Condition = @"TargetInstance ISA 'Win32_DiskDrive' ";
+                    q.Condition = @"TargetInstance ISA 'Win32_DiskDrive' OR TargetInstance ISA 'Win32_DiskPartition'";
                     w = new ManagementEventWatcher(scope, q);
                     w.EventArrived += new EventArrivedEventHandler(w_EventArrived);
                     w.Start();
@@ -55,14 +56,8 @@ namespace DiskImager
 
             private void w_EventArrived(object sender, EventArrivedEventArgs e)
             {
-                ManagementBaseObject baseObject = (ManagementBaseObject)e.NewEvent;
-
-                var cls = baseObject.ClassPath.ClassName;
-                if (cls.Equals("__InstanceCreationEvent") || cls.Equals("__InstanceDeletionEvent"))
-                {
-                    drives = null; // clear cache
-                    Changed();
-                }
+                drives = null; // clear cache
+                Changed();
             }
 
             public List<DiskDrive> Drives
@@ -75,6 +70,23 @@ namespace DiskImager
                 }
             }
 
+            internal void ReScan()
+            {
+                // TODO: Try to find a way to do this by calling a Win32 Hidden API
+                Process p = new Process();
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.FileName = @"C:\Windows\System32\diskpart.exe";
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                p.Start();
+                p.StandardInput.WriteLine("rescan");
+                p.StandardInput.WriteLine("exit");
+                p.WaitForExit();
+
+                drives = null; // clear cache
+                Changed();
+            }
         }
         static public readonly SharedDrives Shared = new SharedDrives();
 
@@ -261,6 +273,11 @@ namespace DiskImager
         
         protected override void Dispose(bool disposing)
         {
+            if (!readOnly)
+            {
+                // We need to ask the OS to rescan partitions
+                DiskDrive.Shared.ReScan();
+            }
             foreach (var v in diskDrive.Partitions)
             {
                 v.UnLock();

@@ -1,16 +1,10 @@
-﻿using Microsoft.Win32;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.IO.Compression;
-using System.Management;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 
 namespace DiskImager
 {
