@@ -35,6 +35,7 @@ namespace liblzma_wrapper {
 		lzma_ret ret;
 		array<Byte>^ gc_buf;
 		bool bCompress;
+		uint64_t offset;
 	public:
 		LZMAStream(Stream^ stream, bool bCompress)
 		{
@@ -43,6 +44,7 @@ namespace liblzma_wrapper {
 			this->bCompress = bCompress;
 			this->gc_buf = gcnew array<Byte>(IO_BUFFER_SIZE);
 
+			this->offset = 0;
 			this->strm = new lzma_stream();
 			*this->strm = strm;
 			if (bCompress)

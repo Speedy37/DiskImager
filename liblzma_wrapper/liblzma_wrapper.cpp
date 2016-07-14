@@ -277,25 +277,32 @@ int liblzma_wrapper::LZMAStream::Read(cli::array<unsigned char, 1> ^buffer, int 
 {
 	if (bCompress)
 		throw gcnew InvalidOperationException("Operation not supported");
-
-	if (strm->avail_in == 0)
+	int read = 0;
+	do
 	{
-		strm->avail_in = stream->Read(gc_buf, 0, gc_buf->Length);
-		pin_ptr<Byte> pp_inbuf = &gc_buf[0];
-		strm->next_in = pp_inbuf;
-	}
+		if (strm->avail_in == 0)
+		{
+			strm->avail_in = stream->Read(gc_buf, 0, gc_buf->Length);
+			this->offset = 0;
+		}
 
+		pin_ptr<Byte> pp_inbuf = &gc_buf[0]; // next_in is only valid in the current scope as C# can move the data elsewhere
+		strm->next_in = pp_inbuf + this->offset;
 
-	pin_ptr<Byte> pp_outbuf = &buffer[0];
-	strm->next_out = pp_outbuf + offset;
-	strm->avail_out = size;
+		pin_ptr<Byte> pp_outbuf = &buffer[0];
+		strm->next_out = pp_outbuf + offset + read;
+		strm->avail_out = size;
 
-	ret = lzma_code(strm, LZMA_RUN);
+		ret = lzma_code(strm, LZMA_RUN);
 
-	if (ret != LZMA_OK && ret != LZMA_STREAM_END)
-		throw gcnew InvalidOperationException(message_strm(ret));
-
-	return size - strm->avail_out;
+		if (ret != LZMA_OK && ret != LZMA_STREAM_END)
+			throw gcnew InvalidOperationException(message_strm(ret));
+		this->offset = strm->next_in - pp_inbuf;
+		int r= size - strm->avail_out;
+		read += r;
+		size -= r;
+	} while (size > 0 && strm->avail_in == 0);
+	return read;
 }
 
 void liblzma_wrapper::LZMAStream::Flush()
