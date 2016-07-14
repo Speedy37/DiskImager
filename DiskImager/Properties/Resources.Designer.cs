@@ -79,6 +79,50 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while cloning.
+        /// </summary>
+        public static string CloneError {
+            get {
+                return ResourceManager.GetString("CloneError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone.
+        /// </summary>
+        public static string CloneTitle {
+            get {
+                return ResourceManager.GetString("CloneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility will now clone data
+        ///
+        ///from: {0}
+        ///to: {1}.
+        ///
+        ///This operation is not reversible and will replace ALL DATA of the selected destination.
+        ///Do you confirm this is what you want?.
+        /// </summary>
+        public static string CloneWarningFormat {
+            get {
+                return ResourceManager.GetString("CloneWarningFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source size ({0}) is bigger than destination size ({1})
+        ///The cloning operation is likely to fail
+        ///Do you want to continue anyway?.
+        /// </summary>
+        public static string CloneWarningSizeFormat {
+            get {
+                return ResourceManager.GetString("CloneWarningSizeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Decrypt.
         /// </summary>
         public static string Decrypt {
@@ -88,11 +132,92 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Destination.
+        /// </summary>
+        public static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all partitions of disk {0} for a total of {1}.
+        /// </summary>
+        public static string DiskReadFormat {
+            get {
+                return ResourceManager.GetString("DiskReadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to disk {0} with a total of {1} space available.
+        /// </summary>
+        public static string DiskWriteFormat {
+            get {
+                return ResourceManager.GetString("DiskWriteFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exchange sides.
         /// </summary>
         public static string Exchange {
             get {
                 return ResourceManager.GetString("Exchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} raw image.
+        /// </summary>
+        public static string ImageRawReadFormat {
+            get {
+                return ResourceManager.GetString("ImageRawReadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raw image with a maximum size of {0}.
+        /// </summary>
+        public static string ImageRawWriteFormat {
+            get {
+                return ResourceManager.GetString("ImageRawWriteFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} xz image that will be decompressed to a {1} image.
+        /// </summary>
+        public static string ImageXZReadFormat {
+            get {
+                return ResourceManager.GetString("ImageXZReadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to xz image with a maximum size of {0}.
+        /// </summary>
+        public static string ImageXZWriteFormat {
+            get {
+                return ResourceManager.GetString("ImageXZWriteFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} zip image that will be decompressed to a {1} image.
+        /// </summary>
+        public static string ImageZipReadFormat {
+            get {
+                return ResourceManager.GetString("ImageZipReadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to zip image with a maximum size of {0}.
+        /// </summary>
+        public static string ImageZipWriteFormat {
+            get {
+                return ResourceManager.GetString("ImageZipWriteFormat", resourceCulture);
             }
         }
         
@@ -115,6 +240,24 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No destination selected.
+        /// </summary>
+        public static string NoDestinationSelected {
+            get {
+                return ResourceManager.GetString("NoDestinationSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No source selected.
+        /// </summary>
+        public static string NoSourceSelected {
+            get {
+                return ResourceManager.GetString("NoSourceSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0:0.0}% at {1}/s ({2}/{3}).
         /// </summary>
         public static string ProgressionFormat {
@@ -129,6 +272,15 @@ namespace DiskImager.Properties {
         public static string Size {
             get {
                 return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source.
+        /// </summary>
+        public static string Source {
+            get {
+                return ResourceManager.GetString("Source", resourceCulture);
             }
         }
         

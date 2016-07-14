@@ -122,7 +122,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("all partitions of disk {0} for a total of {1}", 
+                return String.Format(Properties.Resources.DiskReadFormat, 
                     Model, 
                     HumanSizeConverter.HumanSize(ReadSize));
             }
@@ -131,7 +131,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("disk {0} with a total of {1} space available",
+                return String.Format(Properties.Resources.DiskWriteFormat,
                     Model,
                     HumanSizeConverter.HumanSize(WriteSize));
             }

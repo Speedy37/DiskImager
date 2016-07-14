@@ -123,11 +123,58 @@
   <data name="Clone" xml:space="preserve">
     <value>Clone</value>
   </data>
+  <data name="CloneError" xml:space="preserve">
+    <value>Error while cloning</value>
+  </data>
+  <data name="CloneTitle" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="CloneWarningFormat" xml:space="preserve">
+    <value>This utility will now clone data
+
+from: {0}
+to: {1}.
+
+This operation is not reversible and will replace ALL DATA of the selected destination.
+Do you confirm this is what you want?</value>
+  </data>
+  <data name="CloneWarningSizeFormat" xml:space="preserve">
+    <value>Source size ({0}) is bigger than destination size ({1})
+The cloning operation is likely to fail
+Do you want to continue anyway?</value>
+  </data>
   <data name="Decrypt" xml:space="preserve">
     <value>Decrypt</value>
   </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="DiskReadFormat" xml:space="preserve">
+    <value>all partitions of disk {0} for a total of {1}</value>
+  </data>
+  <data name="DiskWriteFormat" xml:space="preserve">
+    <value>disk {0} with a total of {1} space available</value>
+  </data>
   <data name="Exchange" xml:space="preserve">
     <value>Exchange sides</value>
+  </data>
+  <data name="ImageRawReadFormat" xml:space="preserve">
+    <value>{0} raw image</value>
+  </data>
+  <data name="ImageRawWriteFormat" xml:space="preserve">
+    <value>raw image with a maximum size of {0}</value>
+  </data>
+  <data name="ImageXZReadFormat" xml:space="preserve">
+    <value>{0} xz image that will be decompressed to a {1} image</value>
+  </data>
+  <data name="ImageXZWriteFormat" xml:space="preserve">
+    <value>xz image with a maximum size of {0}</value>
+  </data>
+  <data name="ImageZipReadFormat" xml:space="preserve">
+    <value>{0} zip image that will be decompressed to a {1} image</value>
+  </data>
+  <data name="ImageZipWriteFormat" xml:space="preserve">
+    <value>zip image with a maximum size of {0}</value>
   </data>
   <data name="Label" xml:space="preserve">
     <value>Label</value>
@@ -135,11 +182,20 @@
   <data name="MountPoint" xml:space="preserve">
     <value>Mount points</value>
   </data>
+  <data name="NoDestinationSelected" xml:space="preserve">
+    <value>No destination selected</value>
+  </data>
+  <data name="NoSourceSelected" xml:space="preserve">
+    <value>No source selected</value>
+  </data>
   <data name="ProgressionFormat" xml:space="preserve">
     <value>{0:0.0}% at {1}/s ({2}/{3})</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Size</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
   </data>
   <data name="Units" xml:space="preserve">
     <value>B,KB,MB,GB,TB</value>

@@ -89,7 +89,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("{0} raw image",
+                return String.Format(Properties.Resources.ImageRawReadFormat,
                     HumanSizeConverter.HumanSize(ReadSize));
             }
         }
@@ -97,7 +97,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("raw image with a maximum size of {0}",
+                return String.Format(Properties.Resources.ImageRawWriteFormat,
                     HumanSizeConverter.HumanSize(WriteSize));
             }
         }
@@ -157,7 +157,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("{0} zip image that will be decompressed to a {1} image",
+                return String.Format(Properties.Resources.ImageZipReadFormat,
                     HumanSizeConverter.HumanSize(size),
                     HumanSizeConverter.HumanSize(decompressedSize));
             }
@@ -166,7 +166,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("zip image with a maximum size of {0}",
+                return String.Format(Properties.Resources.ImageZipWriteFormat,
                     HumanSizeConverter.HumanSize(WriteSize));
             }
         }
@@ -236,7 +236,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("{0} xz image that will be decompressed to a {1} image",
+                return String.Format(Properties.Resources.ImageXZReadFormat,
                     HumanSizeConverter.HumanSize(size),
                     HumanSizeConverter.HumanSize(decompressedSize));
             }
@@ -245,7 +245,7 @@ namespace DiskImager
         {
             get
             {
-                return String.Format("xz image with a maximum size of {0}",
+                return String.Format(Properties.Resources.ImageXZWriteFormat,
                     HumanSizeConverter.HumanSize(WriteSize));
             }
         }

@@ -123,8 +123,58 @@
   <data name="Clone" xml:space="preserve">
     <value>Cloner</value>
   </data>
+  <data name="CloneError" xml:space="preserve">
+    <value>Erreur pendant le clonage</value>
+  </data>
+  <data name="CloneTitle" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="CloneWarningFormat" xml:space="preserve">
+    <value>Les données vont maintenant être clonées :
+
+depuis: {0}
+vers: {1}.
+
+Cette opération est irréversible et va remplacer TOUTES les données de la destination sélectionné.
+Est-ce bien ce que vous voulez ?</value>
+  </data>
+  <data name="CloneWarningSizeFormat" xml:space="preserve">
+    <value>La taille de la source ({0}) est plus grande que la taille de destination ({1})
+L'opération de clonage à de très fortes chances d'échoué.
+Voulez-vous continuer quand même ?</value>
+  </data>
   <data name="Decrypt" xml:space="preserve">
     <value>Décrypter</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="DiskReadFormat" xml:space="preserve">
+    <value>toutes les partitions du disque {0} pour un total de {1}</value>
+  </data>
+  <data name="DiskWriteFormat" xml:space="preserve">
+    <value>disque {0} qui possède {1} d'espace disponible</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Echanger la source avec la destination</value>
+  </data>
+  <data name="ImageRawReadFormat" xml:space="preserve">
+    <value>{0} raw image</value>
+  </data>
+  <data name="ImageRawWriteFormat" xml:space="preserve">
+    <value>raw image sur un disque ayant {0} d'espace libre</value>
+  </data>
+  <data name="ImageXZReadFormat" xml:space="preserve">
+    <value>{0} xz image décompressible en une image de {1}</value>
+  </data>
+  <data name="ImageXZWriteFormat" xml:space="preserve">
+    <value>xz image sur un disque ayant {0} d'espace libre</value>
+  </data>
+  <data name="ImageZipReadFormat" xml:space="preserve">
+    <value>{0} zip image décompressible en une image de {1}</value>
+  </data>
+  <data name="ImageZipWriteFormat" xml:space="preserve">
+    <value>zip image sur un disque ayant {0} d'espace libre</value>
   </data>
   <data name="Label" xml:space="preserve">
     <value>Nom</value>
@@ -132,11 +182,20 @@
   <data name="MountPoint" xml:space="preserve">
     <value>Lecteur</value>
   </data>
+  <data name="NoDestinationSelected" xml:space="preserve">
+    <value>Pas de destination sélectionné</value>
+  </data>
+  <data name="NoSourceSelected" xml:space="preserve">
+    <value>Pas de source sélectionné</value>
+  </data>
   <data name="ProgressionFormat" xml:space="preserve">
     <value>{0:0.0}%, {1}/s ({2}/{3})</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Taille</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
   </data>
   <data name="Units" xml:space="preserve">
     <value>o,Ko,Mo,Go,To</value>

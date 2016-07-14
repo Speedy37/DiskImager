@@ -72,7 +72,7 @@ namespace DiskImager
             if (result == 2)
             {
                 clone_progression_value.Value = 1000;
-                clone_progression_text.Text = "Error while cloning disk";
+                clone_progression_text.Text = Properties.Resources.CloneError;
             }
             clone_cancel.Visibility = Visibility.Hidden;
             do_clone.Visibility = Visibility.Visible;
@@ -97,8 +97,8 @@ namespace DiskImager
             if (src == null || dst == null)
             {
                 MessageBox.Show(
-                    src == null ? "No source selected" : "No destination selected",
-                    "Clone",
+                    src == null ? Properties.Resources.NoSourceSelected : Properties.Resources.NoDestinationSelected,
+                    Properties.Resources.Clone,
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -109,24 +109,18 @@ namespace DiskImager
             if (srcSize > dstSize)
             {
                 accept = MessageBox.Show(
-                String.Format("Source size ({0}) is bigger than destination size ({1})\n"
-                    + "The cloning operation is likely to fail\n"
-                    + "Do you want to continue anyway?",
+                String.Format(Properties.Resources.CloneWarningSizeFormat,
                     HumanSizeConverter.HumanSize(srcSize),
-                    HumanSizeConverter.HumanSize(dstSize)), 
-                "Clone",
+                    HumanSizeConverter.HumanSize(dstSize)),
+                Properties.Resources.Clone,
                 MessageBoxButton.YesNo, MessageBoxImage.Warning,
                 MessageBoxResult.No) == MessageBoxResult.Yes;
             }
             accept = MessageBox.Show(
-                String.Format("This utility will now clone data\n\n"
-                    + "from: {0}\n"
-                    + "to: {1}.\n\n"
-                    + "This operation is not reversible and will replace ALL DATA of the selected destination.\n"
-                    + "Do you confirm this is what you want?",
+                String.Format(Properties.Resources.CloneWarningFormat,
                     src.ReadDescription,
                     dst.WriteDescription),
-                "Clone",
+                Properties.Resources.Clone,
                 MessageBoxButton.YesNo, MessageBoxImage.Warning,
                 MessageBoxResult.No) == MessageBoxResult.Yes;
             if (!accept)

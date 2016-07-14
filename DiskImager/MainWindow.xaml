@@ -25,12 +25,12 @@
         </Grid.RowDefinitions>
         <local:SourceControl x:Name="input" 
                              Grid.Row="0" Grid.Column="0" Margin="10,10,10,10" 
-                             Caption="Source" 
+                             Caption="{x:Static i18n:Resources.Source}"
                              SourceType="Drive" SourceSide="ReadSource">
         </local:SourceControl>
         <local:SourceControl x:Name="output" 
                              Grid.Row="0" Grid.Column="2" Margin="10,10,10,10"
-                             Caption="Destination" 
+                             Caption="{x:Static i18n:Resources.Destination}"
                              SourceType="File" SourceSide="WriteSource">
         </local:SourceControl>
         <Button Grid.Row="0" Grid.Column="1" Content="⇌" ToolTip="{x:Static i18n:Resources.Exchange}"
