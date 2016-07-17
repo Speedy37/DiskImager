@@ -40,8 +40,8 @@ namespace DiskImager
             }
             var drive = Source;
             drives = DiskDrive.Shared.Drives.FindAll(x => IsExternalDrive(x));
-            drive_list.ItemsSource = drives;
             DriveListChanged(drive);
+            drive_list.ItemsSource = drives;
         }
 
         private void DriveListChanged(ISource drive)
