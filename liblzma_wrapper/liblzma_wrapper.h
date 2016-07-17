@@ -59,9 +59,15 @@ namespace liblzma_wrapper {
 		}
 		~LZMAStream()
 		{
-			lzma_end(strm);
-			delete strm;
-		} 
+			if (strm) {
+				lzma_end(strm);
+				delete strm;
+			}
+			if (stream) {
+				stream->~Stream();
+			}
+		}
+
 		property bool CanRead { bool get() override { return !bCompress; } }
 		property bool CanSeek { bool get() override { return false; } }
 		property bool CanWrite { bool get() override { return bCompress; } }
