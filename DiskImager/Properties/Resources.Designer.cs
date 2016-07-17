@@ -61,6 +61,24 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All files.
+        /// </summary>
+        public static string AllFiles {
+            get {
+                return ResourceManager.GetString("AllFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All images.
+        /// </summary>
+        public static string AllImages {
+            get {
+                return ResourceManager.GetString("AllImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

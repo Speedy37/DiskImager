@@ -34,14 +34,15 @@ namespace DiskImager
 
         private void image_browse_Click(object sender, RoutedEventArgs e)
         {
-            string desc = String.Join(",", Types.ConvertAll(t => t.Description));
+            string filters = String.Join("", Types.ConvertAll(t => t.Description + "|*" + String.Join(";*", t.Extensions) + "|"));
             string exts = String.Join(";", Types.ConvertAll(t => "*" + String.Join(";*", t.Extensions)));
-            string filter = desc + "|" + exts + "|All files (*.*)|*.*";
+            string filter = filters + Properties.Resources.AllImages +"|" + exts + "|" + Properties.Resources.AllFiles + " (*.*)|*.*";
 
             FileDialog dialog = SourceSide == ESourceSide.ReadSource 
                 ? (FileDialog)new OpenFileDialog() 
                 : (FileDialog)new SaveFileDialog();
             dialog.Filter = filter;
+            dialog.FilterIndex = Types.Count;
             if (dialog.ShowDialog() == true)
             {
                 image_path.Text = dialog.FileName;
