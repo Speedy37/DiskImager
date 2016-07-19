@@ -63,7 +63,7 @@ namespace DiskImager
         {
             var type = (IDiskImageType)image_type.SelectedItem;
             if (type != null)
-                Source = type.LoadImageAt(image_path.Text);
+                Source = image_path.Text.Length > 0 ? type.LoadImageAt(image_path.Text) : null;
         }
 
         public List<IDiskImageType> Types { get { return DiskImageTypes.types; } }
