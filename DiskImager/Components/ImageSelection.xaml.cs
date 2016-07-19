@@ -108,6 +108,7 @@ namespace DiskImager
             checksum_cancel.Visibility = inprogress ? Visibility.Visible : Visibility.Collapsed;
             checksum_progress.Visibility = !computed || inprogress ? Visibility.Visible : Visibility.Collapsed;
             checksum_result.Visibility = computed ? Visibility.Visible : Visibility.Collapsed;
+            checksum_progress.Value = 0;
         }
 
         private Progress<CloneProgression> progression()
