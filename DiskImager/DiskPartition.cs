@@ -43,7 +43,7 @@ namespace DiskImager
         public string FileSystem { get; private set; }
         
         private SafeFileHandle handle;
-        internal void Lock()
+        internal void LockAndDismount()
         {
             if (handle != null)
                 throw new InvalidOperationException("An handle is already open");
@@ -53,10 +53,18 @@ namespace DiskImager
             string path = "\\\\.\\" + letter;
             handle = NativeMethods.CreateFile(path, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, NativeMethods.FILE_SHARE_READ | NativeMethods.FILE_SHARE_WRITE, IntPtr.Zero, NativeMethods.OPEN_EXISTING, 0, IntPtr.Zero);
             if (handle.IsInvalid)
+            {
+                handle = null;
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+            }
             uint junk = 0;
-            if (!NativeMethods.DeviceIoControl(handle, NativeMethods.FSCTL_LOCK_VOLUME, IntPtr.Zero, 0, IntPtr.Zero, 0, ref junk, IntPtr.Zero))
+            if (!NativeMethods.DeviceIoControl(handle, NativeMethods.FSCTL_LOCK_VOLUME, IntPtr.Zero, 0, IntPtr.Zero, 0, ref junk, IntPtr.Zero)
+             || !NativeMethods.DeviceIoControl(handle, NativeMethods.FSCTL_DISMOUNT_VOLUME, IntPtr.Zero, 0, IntPtr.Zero, 0, ref junk, IntPtr.Zero))
+            {
+                handle.Dispose();
+                handle = null;
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+            }
         }
 
         internal void UnLock()
