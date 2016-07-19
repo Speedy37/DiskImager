@@ -68,20 +68,21 @@ namespace DiskImager
         {
             get
             {
-                FileInfo f = new FileInfo(path);
-                string folder = f.Directory.FullName;
-                if (!folder.EndsWith("\\"))
-                    folder += '\\';
+                try
+                {
+                    FileInfo f = new FileInfo(path);
+                    string folder = f.Directory.FullName;
+                    if (!folder.EndsWith("\\"))
+                        folder += '\\';
 
-                ulong free = 0, dummy1 = 0, dummy2 = 0;
-                if (NativeMethods.GetDiskFreeSpaceEx(folder, out free, out dummy1, out dummy2))
-                {
-                    return (long)free;
+                    ulong free = 0, dummy1 = 0, dummy2 = 0;
+                    if (NativeMethods.GetDiskFreeSpaceEx(folder, out free, out dummy1, out dummy2))
+                    {
+                        return (long)free;
+                    }
                 }
-                else
-                {
-                    return -1;
-                }
+                catch {}
+                return -1;
             }
         }
 
@@ -126,40 +127,54 @@ namespace DiskImager
         }
     }
 
-    class ZipDiskImage : RawDiskImage
+    abstract class CompressedDiskImage : RawDiskImage
     {
-        private long decompressedSize;
+        private long decompressedSize = -2;
 
-        public ZipDiskImage(string path) : base(path)
+        public CompressedDiskImage(string path) : base(path) { }
+
+        protected abstract long DecompressedSize();
+
+        public override long ReadSize
         {
-            decompressedSize = -1;
-            if (size > 0)
+            get
             {
-                try
+                if (decompressedSize == -2)
                 {
-                    FileStream img = new FileStream(path, FileMode.Open, FileAccess.Read);
-                    using (ZipArchive arc = new ZipArchive(img, ZipArchiveMode.Read))
+                    decompressedSize = -1;
+                    try
                     {
-                        var entry = arc.GetEntry("image.img");
-                        if (entry != null)
-                        {
-                            decompressedSize = entry.Length;
-                        }
+                       decompressedSize = DecompressedSize();
                     }
+                    catch { }
                 }
-                catch { }
+                return decompressedSize;
             }
         }
-        
+    }
+
+    class ZipDiskImage : CompressedDiskImage
+    {
+        public ZipDiskImage(string path) : base(path) { }
+
         public override IDiskImageType Type { get { return DiskImageTypes.zipDiskImageType; } }
-        public override long ReadSize { get { return decompressedSize; } }
+        protected override long DecompressedSize()
+        {
+            FileStream img = new FileStream(path, FileMode.Open, FileAccess.Read);
+            using (ZipArchive arc = new ZipArchive(img, ZipArchiveMode.Read))
+            {
+                if (arc.Entries.Count > 0)
+                    return arc.Entries[0].Length;
+            }
+            return -1;
+        }
         public override string ReadDescription
         {
             get
             {
                 return String.Format(Properties.Resources.ImageZipReadFormat,
                     HumanSizeConverter.HumanSize(size),
-                    HumanSizeConverter.HumanSize(decompressedSize));
+                    HumanSizeConverter.HumanSize(ReadSize));
             }
         }
         public override string WriteDescription
@@ -212,33 +227,26 @@ namespace DiskImager
         }
     }
 
-    class LzmaDiskImage : RawDiskImage
+    class LzmaDiskImage : CompressedDiskImage
     {
-        private long decompressedSize;
+        public LzmaDiskImage(string path) : base(path) {}
 
-        public LzmaDiskImage(string path) : base(path)
+        public override IDiskImageType Type { get { return DiskImageTypes.lzmaDiskImageType; } }
+        protected override long DecompressedSize()
         {
-            decompressedSize = -1;
-            if (size > 0)
+            using (var file = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                try
-                {
-                    using (var file = new FileStream(path, FileMode.Open, FileAccess.Read))
-                    {
-                        decompressedSize = (long)(new XZFileInfo(file)).uncompressed_size;
-                    }
-                }
-                catch { }
+                return (long)(new XZFileInfo(file)).uncompressed_size;
             }
         }
-        
+
         public override string ReadDescription
         {
             get
             {
                 return String.Format(Properties.Resources.ImageXZReadFormat,
                     HumanSizeConverter.HumanSize(size),
-                    HumanSizeConverter.HumanSize(decompressedSize));
+                    HumanSizeConverter.HumanSize(ReadSize));
             }
         }
         public override string WriteDescription
@@ -249,9 +257,6 @@ namespace DiskImager
                     HumanSizeConverter.HumanSize(WriteSize));
             }
         }
-
-        public override IDiskImageType Type { get { return DiskImageTypes.lzmaDiskImageType; } }
-        public override long ReadSize { get { return decompressedSize; } }
         
         public override Stream ReadStream()
         {
