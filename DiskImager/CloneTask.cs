@@ -11,15 +11,23 @@ namespace DiskImager
 {
     public class CloneProgression
     {
-        internal CloneProgression(ulong totalBytes)
+        internal CloneProgression(long total)
         {
-            this.totalBytes = totalBytes;
-            this.clonedBytes = 0;
-            this.bytesPerSeconds = 0;
+            this.total = total;
         }
-        public ulong clonedBytes;
-        public ulong totalBytes;
-        public ulong bytesPerSeconds;
+        public long written = 0;
+        public long stepBytesPerSeconds = 0;
+        public long avgBytesPerSeconds = 0;
+        public long elapsed = 0;
+        public long total;
+
+        internal void Report(IProgress<CloneProgression> progress, long stepRead, long lastElapsed, long elapsed)
+        {
+            this.avgBytesPerSeconds = (written * 1000) / elapsed;
+            this.stepBytesPerSeconds = (stepRead * 1000) / (elapsed - lastElapsed);
+            this.elapsed = elapsed;
+            progress.Report(this);
+        }
     };
 
     class CloneTask
@@ -126,44 +134,50 @@ namespace DiskImager
             };
         }
 
-        static public bool clone(Stream src, Stream dst, long size, IProgress<CloneProgression> progress, CancellationToken cancellationToken)
+        /// <summary>
+        /// read size bytes of data from the src stream to the dst stream
+        /// </summary>
+        /// <param name="src">Stream that contains the data to read</param>
+        /// <param name="dst">Stream where the data will be written</param>
+        /// <param name="size">Amount of data to clone in bytes</param>
+        /// <param name="cancellationToken">Token to use for cancelling the clone</param>
+        /// <param name="progress">Progression reporter</param>
+        /// <param name="progressStepDuration">Amount of time in ms between to progression report</param>
+        /// <returns>true if the clone task completed, false otherwise</returns>
+        static public bool clone(
+            Stream src, Stream dst, long size, 
+            CancellationToken cancellationToken, 
+            IProgress<CloneProgression> progress, long progressStepDuration = 100)
         {
+            Stopwatch watch = Stopwatch.StartNew();
+            long lastElapsed = 0;
             byte[] buffer;
-            Stopwatch wall = Stopwatch.StartNew();
-            Stopwatch wstep = Stopwatch.StartNew();
-            long read;
-            ulong stepProgression = 0;
-            ulong stepSize = 0;
-            CloneProgression p = new CloneProgression((ulong)(size < 0 ? src.Length : size));
+            long read, stepRead = 0;
+            CloneProgression p = new CloneProgression(size < 0 ? src.Length : size);
             EndCallback endCallback;
-            AsyncRead asyncRead = syncReader(src, (long)p.totalBytes, out endCallback, cancellationToken);
+            AsyncRead asyncRead = syncReader(src, p.total, out endCallback, cancellationToken);
             while (!cancellationToken.IsCancellationRequested && (read = asyncRead(out buffer)) > 0)
             {
                 dst.Write(buffer, 0, (int)read);
-                p.clonedBytes += (ulong)read;
-                stepSize += (ulong)read;
-                ulong progression = (p.clonedBytes * 1000) / p.totalBytes;
-                if (stepProgression != progression && wstep.ElapsedMilliseconds > 0)
+                p.written += read;
+                stepRead += read;
+                long elapsed = watch.ElapsedMilliseconds;
+                if (elapsed - lastElapsed >= progressStepDuration)
                 {
-                    wstep.Stop();
-                    p.bytesPerSeconds = (stepSize * 1000) / (ulong)wstep.ElapsedMilliseconds;
-                    progress.Report(p);
-                    wstep.Restart();
-                    stepProgression = progression;
-                    stepSize = 0;
+                    p.Report(progress, stepRead, lastElapsed, elapsed);
+                    stepRead = 0;
+                    lastElapsed = elapsed;
                 }
             }
 
-            wall.Stop();
-            wstep.Stop();
-            if (p.clonedBytes == p.totalBytes)
-            {
-                p.bytesPerSeconds = (p.totalBytes * 1000) / Math.Max((ulong)wall.ElapsedMilliseconds, 1);
-                progress.Report(p);
-            }
+            watch.Stop();
             dst.Flush();
             endCallback();
-            return p.clonedBytes == p.totalBytes;
+            if (p.written == p.total)
+            {
+                p.Report(progress, stepRead, lastElapsed, watch.ElapsedMilliseconds);
+            }
+            return p.written == p.total;
         }
     }
 }

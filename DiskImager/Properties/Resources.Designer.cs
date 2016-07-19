@@ -97,11 +97,38 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone operation aborted.
+        /// </summary>
+        public static string CloneAborted {
+            get {
+                return ResourceManager.GetString("CloneAborted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while cloning.
         /// </summary>
         public static string CloneError {
             get {
                 return ResourceManager.GetString("CloneError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured while cloning: {0}.
+        /// </summary>
+        public static string CloneErrorFormat {
+            get {
+                return ResourceManager.GetString("CloneErrorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data has been successfully cloned.
+        /// </summary>
+        public static string CloneSuccess {
+            get {
+                return ResourceManager.GetString("CloneSuccess", resourceCulture);
             }
         }
         
@@ -276,11 +303,92 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Destination: {0}.
+        /// </summary>
+        public static string ProgressDestinationFormat {
+            get {
+                return ResourceManager.GetString("ProgressDestinationFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0:0.0}% at {1}/s ({2}/{3}).
         /// </summary>
         public static string ProgressionFormat {
             get {
                 return ResourceManager.GetString("ProgressionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read: {0}/{1}.
+        /// </summary>
+        public static string ProgressReadFormat {
+            get {
+                return ResourceManager.GetString("ProgressReadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source: {0}.
+        /// </summary>
+        public static string ProgressSourceFormat {
+            get {
+                return ResourceManager.GetString("ProgressSourceFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time elapsed: {0}.
+        /// </summary>
+        public static string ProgressTimeElapsedFormat {
+            get {
+                return ResourceManager.GetString("ProgressTimeElapsedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time remaining: {0}.
+        /// </summary>
+        public static string ProgressTimeRemainingFormat {
+            get {
+                return ResourceManager.GetString("ProgressTimeRemainingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculating....
+        /// </summary>
+        public static string ProgressTimeUndefined {
+            get {
+                return ResourceManager.GetString("ProgressTimeUndefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Written: {0}/{1}.
+        /// </summary>
+        public static string ProgressWrittenFormat {
+            get {
+                return ResourceManager.GetString("ProgressWrittenFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source and destination are identical..
+        /// </summary>
+        public static string SameSourceAndDestination {
+            get {
+                return ResourceManager.GetString("SameSourceAndDestination", resourceCulture);
             }
         }
         
@@ -303,11 +411,29 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Speed: {0}.
+        /// </summary>
+        public static string SpeedFormat {
+            get {
+                return ResourceManager.GetString("SpeedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to B,KB,MB,GB,TB.
         /// </summary>
         public static string Units {
             get {
                 return ResourceManager.GetString("Units", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d,24,h,60,m,60,s,1000,ms.
+        /// </summary>
+        public static string UnitsTimeShort {
+            get {
+                return ResourceManager.GetString("UnitsTimeShort", resourceCulture);
             }
         }
     }

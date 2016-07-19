@@ -129,8 +129,17 @@
   <data name="Clone" xml:space="preserve">
     <value>Cloner</value>
   </data>
+  <data name="CloneAborted" xml:space="preserve">
+    <value>Operation de clonage annulé</value>
+  </data>
   <data name="CloneError" xml:space="preserve">
     <value>Erreur pendant le clonage</value>
+  </data>
+  <data name="CloneErrorFormat" xml:space="preserve">
+    <value>Une erreur est survenu pendant le clonage: {0}</value>
+  </data>
+  <data name="CloneSuccess" xml:space="preserve">
+    <value>Opération de clonage réussie</value>
   </data>
   <data name="CloneTitle" xml:space="preserve">
     <value>Clone</value>
@@ -197,13 +206,43 @@ Voulez-vous continuer quand même ?</value>
   <data name="ProgressionFormat" xml:space="preserve">
     <value>{0:0.0}%, {1}/s ({2}/{3})</value>
   </data>
+  <data name="ProgressReadFormat" xml:space="preserve">
+    <value>Lues : {0}/{1}</value>
+  </data>
+  <data name="ProgressSourceFormat" xml:space="preserve">
+    <value>Source: {0}</value>
+  </data>
+  <data name="ProgressTimeElapsedFormat" xml:space="preserve">
+    <value>Temps écoulé : {0}</value>
+  </data>
+  <data name="ProgressTimeRemainingFormat" xml:space="preserve">
+    <value>Temps restant : {0}</value>
+  </data>
+  <data name="ProgressTimeUndefined" xml:space="preserve">
+    <value>Calcul en cours...</value>
+  </data>
+  <data name="ProgressWrittenFormat" xml:space="preserve">
+    <value>Ecrit : {0}/{1}</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Rafraichir</value>
+  </data>
+  <data name="SameSourceAndDestination" xml:space="preserve">
+    <value>La source et la destination sont identiques.</value>
+  </data>
   <data name="Size" xml:space="preserve">
     <value>Taille</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Source</value>
   </data>
+  <data name="SpeedFormat" xml:space="preserve">
+    <value>Vitesse : {0}</value>
+  </data>
   <data name="Units" xml:space="preserve">
     <value>o,Ko,Mo,Go,To</value>
+  </data>
+  <data name="UnitsTimeShort" xml:space="preserve">
+    <value>j,24,h,60,m,60,s,1000,ms</value>
   </data>
 </root>

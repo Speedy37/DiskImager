@@ -129,8 +129,17 @@
   <data name="Clone" xml:space="preserve">
     <value>Clone</value>
   </data>
+  <data name="CloneAborted" xml:space="preserve">
+    <value>Clone operation aborted</value>
+  </data>
   <data name="CloneError" xml:space="preserve">
     <value>Error while cloning</value>
+  </data>
+  <data name="CloneErrorFormat" xml:space="preserve">
+    <value>An error occured while cloning: {0}</value>
+  </data>
+  <data name="CloneSuccess" xml:space="preserve">
+    <value>Data has been successfully cloned</value>
   </data>
   <data name="CloneTitle" xml:space="preserve">
     <value>Clone</value>
@@ -194,8 +203,29 @@ Do you want to continue anyway?</value>
   <data name="NoSourceSelected" xml:space="preserve">
     <value>No source selected</value>
   </data>
+  <data name="ProgressDestinationFormat" xml:space="preserve">
+    <value>Destination: {0}</value>
+  </data>
   <data name="ProgressionFormat" xml:space="preserve">
     <value>{0:0.0}% at {1}/s ({2}/{3})</value>
+  </data>
+  <data name="ProgressReadFormat" xml:space="preserve">
+    <value>Read: {0}/{1}</value>
+  </data>
+  <data name="ProgressSourceFormat" xml:space="preserve">
+    <value>Source: {0}</value>
+  </data>
+  <data name="ProgressTimeElapsedFormat" xml:space="preserve">
+    <value>Time elapsed: {0}</value>
+  </data>
+  <data name="ProgressTimeRemainingFormat" xml:space="preserve">
+    <value>Time remaining: {0}</value>
+  </data>
+  <data name="ProgressTimeUndefined" xml:space="preserve">
+    <value>Calculating...</value>
+  </data>
+  <data name="ProgressWrittenFormat" xml:space="preserve">
+    <value>Written: {0}/{1}</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Size</value>
@@ -205,5 +235,17 @@ Do you want to continue anyway?</value>
   </data>
   <data name="Units" xml:space="preserve">
     <value>B,KB,MB,GB,TB</value>
+  </data>
+  <data name="UnitsTimeShort" xml:space="preserve">
+    <value>d,24,h,60,m,60,s,1000,ms</value>
+  </data>
+  <data name="SameSourceAndDestination" xml:space="preserve">
+    <value>Source and destination are identical.</value>
+  </data>
+  <data name="SpeedFormat" xml:space="preserve">
+    <value>Speed: {0}</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
   </data>
 </root>
