@@ -42,7 +42,7 @@ namespace DiskImager
                 ? (FileDialog)new OpenFileDialog() 
                 : (FileDialog)new SaveFileDialog();
             dialog.Filter = filter;
-            dialog.FilterIndex = Types.Count;
+            dialog.FilterIndex = Types.Count + 1;
             if (dialog.ShowDialog() == true)
             {
                 image_path.Text = dialog.FileName;
