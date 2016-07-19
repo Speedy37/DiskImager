@@ -14,9 +14,9 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" x:Name="image_path" Margin="10,10,0,10" TextWrapping="NoWrap" VerticalContentAlignment="Center" TextChanged="image_path_TextChanged" />
-            <Button Grid.Column="1" x:Name="image_browse" Content="..." Margin="-1,10,0,10" Click="image_browse_Click" Width="25"/>
-            <ComboBox Grid.Column="2" x:Name="image_type" Margin="10,10,10,10" ItemsSource="{Binding Types}" SelectionChanged="image_type_SelectionChanged">
+            <TextBox Grid.Column="0" x:Name="image_path" TextWrapping="NoWrap" VerticalContentAlignment="Center" TextChanged="image_path_TextChanged" />
+            <Button Grid.Column="1" x:Name="image_browse" Content="..." Margin="-1,0,0,0" Click="image_browse_Click" Width="25"/>
+            <ComboBox Grid.Column="2" x:Name="image_type" Margin="10,0,0,0" ItemsSource="{Binding Types}" SelectionChanged="image_type_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Path=Description}"/>
@@ -30,17 +30,17 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <ProgressBar Grid.Column="0" x:Name="checksum_progress" Margin="10,10,5,10" />
-            <TextBox Grid.Column="0" x:Name="checksum_result" Margin="10,10,5,10" VerticalContentAlignment="Center" />
-            <ComboBox Grid.Column="1" x:Name="checksum_type" Margin="5,10,5,10" SelectedIndex="1">
+            <ProgressBar Grid.Column="0" x:Name="checksum_progress" Margin="0,10,5,0" />
+            <TextBox Grid.Column="0" x:Name="checksum_result" Margin="0,10,5,0" VerticalContentAlignment="Center" />
+            <ComboBox Grid.Column="1" x:Name="checksum_type" Margin="5,10,5,0" SelectedIndex="1">
                 <ComboBoxItem>MD5</ComboBoxItem>
                 <ComboBoxItem>SHA1</ComboBoxItem>
                 <ComboBoxItem>SHA256</ComboBoxItem>
                 <ComboBoxItem>SHA384</ComboBoxItem>
                 <ComboBoxItem>SHA512</ComboBoxItem>
             </ComboBox>
-            <Button Grid.Column="2" Margin="5,10,10,10" x:Name="checksum_calculate" Content="{x:Static i18n:Resources.Compute}" Click="checksum_calculate_Click" />
-            <Button Grid.Column="2" Margin="5,10,10,10" x:Name="checksum_cancel" Content="{x:Static i18n:Resources.Cancel}" Click="checksum_cancel_Click" />
+            <Button Grid.Column="2" Margin="5,10,0,0" x:Name="checksum_calculate" Content="{x:Static i18n:Resources.Compute}" Click="checksum_calculate_Click" />
+            <Button Grid.Column="2" Margin="5,10,0,0" x:Name="checksum_cancel" Content="{x:Static i18n:Resources.Cancel}" Click="checksum_cancel_Click" />
         </Grid>
         <TextBlock Margin="10,10,10,10" x:Name="image_info" TextWrapping="Wrap" />
     </StackPanel>

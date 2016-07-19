@@ -15,8 +15,8 @@
     <Grid>
         <GroupBox Header="{Binding Caption}" x:Name="container">
             <Grid>
-                <local:ImageSelection x:Name="image"></local:ImageSelection>
-                <local:DriveSelection x:Name="drive"></local:DriveSelection>
+                <local:ImageSelection Margin="10" x:Name="image"></local:ImageSelection>
+                <local:DriveSelection Margin="10" x:Name="drive"></local:DriveSelection>
             </Grid>
         </GroupBox>
         <ComboBox x:Name="input_type" Margin="0,0,10,0" VerticalAlignment="Top"

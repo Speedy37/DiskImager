@@ -12,7 +12,7 @@
         <local:DriveDescription x:Key="DriveDescription"/>
     </UserControl.Resources>
     <Grid>
-        <ComboBox x:Name="drive_list" Margin="10,10,10,0" VerticalAlignment="Top"
+        <ComboBox x:Name="drive_list" VerticalAlignment="Top"
 				SelectedItem="{Binding Source}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -20,7 +20,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ListView  x:Name="listView" Margin="10,37,10,10" ItemsSource="{Binding Source.Partitions}">
+        <ListView  x:Name="listView" Margin="0,27,0,0" ItemsSource="{Binding Source.Partitions}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="{x:Static i18n:Resources.MountPoint}" DisplayMemberBinding="{Binding MountPoint}"  />
