@@ -138,13 +138,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters.cs" />
-    <Compile Include="DriveSelection.xaml.cs">
+    <Compile Include="Components\DriveSelection.xaml.cs">
       <DependentUpon>DriveSelection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageSelection.xaml.cs">
+    <Compile Include="Components\ImageSelection.xaml.cs">
       <DependentUpon>ImageSelection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgressGraph.xaml.cs">
+    <Compile Include="Components\ProgressGraph.xaml.cs">
       <DependentUpon>ProgressGraph.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.fr.Designer.cs">
@@ -153,17 +153,17 @@
       <DependentUpon>Resources.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="ProxyStream.cs" />
-    <Compile Include="SourceControl.xaml.cs">
+    <Compile Include="Components\SourceControl.xaml.cs">
       <DependentUpon>SourceControl.xaml</DependentUpon>
     </Compile>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <Page Include="DriveSelection.xaml">
+    <Page Include="Components\DriveSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ImageSelection.xaml">
+    <Page Include="Components\ImageSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,19 +175,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CloneTask.cs" />
-    <Compile Include="DiskDrive.cs" />
-    <Compile Include="DiskImage.cs" />
-    <Compile Include="DiskPartition.cs" />
+    <Compile Include="Tasks\ChecksumTask.cs" />
+    <Compile Include="Tasks\CloneTask.cs" />
+    <Compile Include="Sources\DiskDrive.cs" />
+    <Compile Include="Sources\DiskImage.cs" />
+    <Compile Include="Sources\DiskPartition.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ProgressGraph.xaml">
+    <Page Include="Components\ProgressGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SourceControl.xaml">
+    <Page Include="Components\SourceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

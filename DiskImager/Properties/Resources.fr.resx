@@ -136,7 +136,8 @@
     <value>Erreur pendant le clonage</value>
   </data>
   <data name="CloneErrorFormat" xml:space="preserve">
-    <value>Une erreur est survenu pendant le clonage: {0}</value>
+    <value>Une erreur est survenu pendant le clonage :
+{0}</value>
   </data>
   <data name="CloneSuccess" xml:space="preserve">
     <value>Opération de clonage réussie</value>
@@ -244,5 +245,15 @@ Voulez-vous continuer quand même ?</value>
   </data>
   <data name="UnitsTimeShort" xml:space="preserve">
     <value>j,24,h,60,m,60,s,1000,ms</value>
+  </data>
+  <data name="Compute" xml:space="preserve">
+    <value>Calculer</value>
+  </data>
+  <data name="Checksum" xml:space="preserve">
+    <value>Somme de contrôle</value>
+  </data>
+  <data name="ChecksumErrorFormat" xml:space="preserve">
+    <value>Une erreur est survenu pendant le calcul de la somme de contrôle :
+{0}</value>
   </data>
 </root>

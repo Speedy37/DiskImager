@@ -32,8 +32,9 @@ namespace DiskImager
 
     class CloneTask
     {
+        public delegate void ForEachRead(byte[] buffer, long size);
         delegate long AsyncRead(out byte[] buffer);
-        delegate void EndCallback();
+        public delegate void EndCallback();
         class ReadAhead
         {
             internal byte[] buffer;
@@ -149,6 +150,22 @@ namespace DiskImager
             CancellationToken cancellationToken, 
             IProgress<CloneProgression> progress, long progressStepDuration = 100)
         {
+            return foreachRead((byte[] buffer, long read) =>
+            {
+                dst.Write(buffer, 0, (int)read);
+            }, () =>
+            {
+                dst.Flush();
+            }, src, size, cancellationToken, progress, progressStepDuration);
+        }
+
+        static public bool foreachRead(
+            ForEachRead callForEachRead,
+            EndCallback then,
+            Stream src, long size,
+            CancellationToken cancellationToken,
+            IProgress<CloneProgression> progress, long progressStepDuration = 100)
+        {
             Stopwatch watch = Stopwatch.StartNew();
             long lastElapsed = 0;
             byte[] buffer;
@@ -158,7 +175,7 @@ namespace DiskImager
             AsyncRead asyncRead = syncReader(src, p.total, out endCallback, cancellationToken);
             while (!cancellationToken.IsCancellationRequested && (read = asyncRead(out buffer)) > 0)
             {
-                dst.Write(buffer, 0, (int)read);
+                callForEachRead(buffer, read);
                 p.written += read;
                 stepRead += read;
                 long elapsed = watch.ElapsedMilliseconds;
@@ -171,7 +188,7 @@ namespace DiskImager
             }
 
             watch.Stop();
-            dst.Flush();
+            then();
             endCallback();
             if (p.written == p.total)
             {

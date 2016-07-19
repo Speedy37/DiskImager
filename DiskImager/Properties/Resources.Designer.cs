@@ -88,6 +88,25 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checksum.
+        /// </summary>
+        public static string Checksum {
+            get {
+                return ResourceManager.GetString("Checksum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured while computing checksum:
+        ///{0}.
+        /// </summary>
+        public static string ChecksumErrorFormat {
+            get {
+                return ResourceManager.GetString("ChecksumErrorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clone.
         /// </summary>
         public static string Clone {
@@ -115,7 +134,8 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured while cloning: {0}.
+        ///   Looks up a localized string similar to An error occured while cloning:
+        ///{0}.
         /// </summary>
         public static string CloneErrorFormat {
             get {
@@ -164,6 +184,15 @@ namespace DiskImager.Properties {
         public static string CloneWarningSizeFormat {
             get {
                 return ResourceManager.GetString("CloneWarningSizeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compute.
+        /// </summary>
+        public static string Compute {
+            get {
+                return ResourceManager.GetString("Compute", resourceCulture);
             }
         }
         

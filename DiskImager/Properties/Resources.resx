@@ -136,7 +136,8 @@
     <value>Error while cloning</value>
   </data>
   <data name="CloneErrorFormat" xml:space="preserve">
-    <value>An error occured while cloning: {0}</value>
+    <value>An error occured while cloning:
+{0}</value>
   </data>
   <data name="CloneSuccess" xml:space="preserve">
     <value>Data has been successfully cloned</value>
@@ -247,5 +248,15 @@ Do you want to continue anyway?</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="Checksum" xml:space="preserve">
+    <value>Checksum</value>
+  </data>
+  <data name="ChecksumErrorFormat" xml:space="preserve">
+    <value>An error occured while computing checksum:
+{0}</value>
+  </data>
+  <data name="Compute" xml:space="preserve">
+    <value>Compute</value>
   </data>
 </root>
