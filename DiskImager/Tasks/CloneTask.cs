@@ -23,9 +23,12 @@ namespace DiskImager
 
         internal void Report(IProgress<CloneProgression> progress, long stepRead, long lastElapsed, long elapsed)
         {
-            this.avgBytesPerSeconds = (written * 1000) / elapsed;
-            this.stepBytesPerSeconds = (stepRead * 1000) / (elapsed - lastElapsed);
-            this.elapsed = elapsed;
+            if (elapsed > lastElapsed) // prevent division by zero
+            {
+                this.avgBytesPerSeconds = (written * 1000) / elapsed;
+                this.stepBytesPerSeconds = (stepRead * 1000) / (elapsed - lastElapsed);
+                this.elapsed = elapsed;
+            }
             progress.Report(this);
         }
     };
