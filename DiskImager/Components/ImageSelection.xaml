@@ -42,6 +42,6 @@
             <Button Grid.Column="2" Margin="5,10,0,0" x:Name="checksum_calculate" Content="{x:Static i18n:Resources.Compute}" Click="checksum_calculate_Click" />
             <Button Grid.Column="2" Margin="5,10,0,0" x:Name="checksum_cancel" Content="{x:Static i18n:Resources.Cancel}" Click="checksum_cancel_Click" />
         </Grid>
-        <TextBlock Margin="10,10,10,10" x:Name="image_info" TextWrapping="Wrap" />
+        <TextBlock Margin="0,10,0,0" x:Name="image_info" TextWrapping="Wrap" />
     </StackPanel>
 </UserControl>
