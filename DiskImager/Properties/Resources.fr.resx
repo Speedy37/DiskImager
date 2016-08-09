@@ -256,4 +256,10 @@ Voulez-vous continuer quand même ?</value>
     <value>Une erreur est survenu pendant le calcul de la somme de contrôle :
 {0}</value>
   </data>
+  <data name="ImageReadInvalid" xml:space="preserve">
+    <value>Fichier introuvable ou format invalide</value>
+  </data>
+  <data name="ImageWriteInvalid" xml:space="preserve">
+    <value>Impossible de calculer l'espace disque disponible</value>
+  </data>
 </root>

@@ -86,20 +86,32 @@ namespace DiskImager
             }
         }
 
-        public virtual string ReadDescription
+        protected virtual string ValidReadDescription(long size)
+        {
+            return String.Format(Properties.Resources.ImageRawReadFormat,
+                HumanSizeConverter.HumanSize(size));
+        }
+
+        protected virtual string ValidWriteDescription(long size)
+        {
+            return String.Format(Properties.Resources.ImageRawReadFormat,
+                HumanSizeConverter.HumanSize(size));
+        }
+
+        public string ReadDescription
         {
             get
             {
-                return String.Format(Properties.Resources.ImageRawReadFormat,
-                    HumanSizeConverter.HumanSize(ReadSize));
+                long size = ReadSize;
+                return size != -1 ? ValidReadDescription(size) : Properties.Resources.ImageReadInvalid;
             }
         }
-        public virtual string WriteDescription
+        public string WriteDescription
         {
             get
             {
-                return String.Format(Properties.Resources.ImageRawWriteFormat,
-                    HumanSizeConverter.HumanSize(WriteSize));
+                long size = WriteSize;
+                return size != -1 ? ValidWriteDescription(size) : Properties.Resources.ImageWriteInvalid;
             }
         }
 
@@ -168,22 +180,18 @@ namespace DiskImager
             }
             return -1;
         }
-        public override string ReadDescription
+
+        protected override string ValidReadDescription(long size)
         {
-            get
-            {
-                return String.Format(Properties.Resources.ImageZipReadFormat,
-                    HumanSizeConverter.HumanSize(size),
-                    HumanSizeConverter.HumanSize(ReadSize));
-            }
+            return String.Format(Properties.Resources.ImageZipReadFormat,
+                    HumanSizeConverter.HumanSize(this.size),
+                    HumanSizeConverter.HumanSize(size));
         }
-        public override string WriteDescription
+
+        protected override string ValidWriteDescription(long size)
         {
-            get
-            {
-                return String.Format(Properties.Resources.ImageZipWriteFormat,
-                    HumanSizeConverter.HumanSize(WriteSize));
-            }
+            return String.Format(Properties.Resources.ImageZipWriteFormat,
+                HumanSizeConverter.HumanSize(size));
         }
 
         public override Stream ReadStream()
@@ -239,23 +247,18 @@ namespace DiskImager
                 return (long)(new XZFileInfo(file)).uncompressed_size;
             }
         }
-
-        public override string ReadDescription
+        
+        protected override string ValidReadDescription(long size)
         {
-            get
-            {
-                return String.Format(Properties.Resources.ImageXZReadFormat,
-                    HumanSizeConverter.HumanSize(size),
-                    HumanSizeConverter.HumanSize(ReadSize));
-            }
+            return String.Format(Properties.Resources.ImageXZReadFormat,
+                    HumanSizeConverter.HumanSize(this.size),
+                    HumanSizeConverter.HumanSize(size));
         }
-        public override string WriteDescription
+
+        protected override string ValidWriteDescription(long size)
         {
-            get
-            {
-                return String.Format(Properties.Resources.ImageXZWriteFormat,
-                    HumanSizeConverter.HumanSize(WriteSize));
-            }
+            return String.Format(Properties.Resources.ImageXZWriteFormat,
+                    HumanSizeConverter.HumanSize(size));
         }
         
         public override Stream ReadStream()

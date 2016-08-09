@@ -259,4 +259,10 @@ Do you want to continue anyway?</value>
   <data name="Compute" xml:space="preserve">
     <value>Compute</value>
   </data>
+  <data name="ImageReadInvalid" xml:space="preserve">
+    <value>No such file or invalid file format</value>
+  </data>
+  <data name="ImageWriteInvalid" xml:space="preserve">
+    <value>Unable to compute available space</value>
+  </data>
 </root>

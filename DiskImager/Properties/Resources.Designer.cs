@@ -260,6 +260,24 @@ namespace DiskImager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No such file or invalid file format.
+        /// </summary>
+        public static string ImageReadInvalid {
+            get {
+                return ResourceManager.GetString("ImageReadInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to compute available space.
+        /// </summary>
+        public static string ImageWriteInvalid {
+            get {
+                return ResourceManager.GetString("ImageWriteInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} xz image that will be decompressed to a {1} image.
         /// </summary>
         public static string ImageXZReadFormat {
