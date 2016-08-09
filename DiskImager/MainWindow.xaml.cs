@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shell;
 
 namespace DiskImager
 {
@@ -32,8 +33,10 @@ namespace DiskImager
             long[] remainings = new long[50]; // soften the remaining ms on 5 sec
             long idx = 0;
             return new Progress<CloneProgression>(p => {
+                var progress = (double)p.written / p.total;
+                taskBarItemInfo.ProgressValue = progress;
                 clone_progression_graph.AddValue(
-                    (double)p.written / p.total, 
+                    progress, 
                     p.stepBytesPerSeconds, 
                     String.Format(Properties.Resources.SpeedFormat, HumanSizeConverter.HumanSize(p.stepBytesPerSeconds))
                     );
@@ -66,6 +69,8 @@ namespace DiskImager
         {
             var progress = progression();
             var cancellationToken = token();
+            taskBarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
+            taskBarItemInfo.ProgressValue = 0.0;
             changeVisibility(true);
             Exception exception = null;
             bool result = await (Task.Run(() =>
@@ -80,8 +85,11 @@ namespace DiskImager
                     return false;
                 }
             }, cancellationToken));
+            if (!IsActive)
+                NativeMethods.FlashWindow(this);
             if (exception != null)
             {
+                taskBarItemInfo.ProgressState = TaskbarItemProgressState.Error;
                 MessageBox.Show(
                     String.Format(Properties.Resources.CloneErrorFormat, exception.ToString()),
                     Properties.Resources.Clone,
@@ -89,6 +97,7 @@ namespace DiskImager
             }
             else
             {
+                taskBarItemInfo.ProgressState = result ? TaskbarItemProgressState.Normal : TaskbarItemProgressState.Paused;
                 MessageBox.Show(
                     result ? Properties.Resources.CloneSuccess : Properties.Resources.CloneAborted,
                     Properties.Resources.Clone,
@@ -96,6 +105,7 @@ namespace DiskImager
             }
             DiskDrive.Shared.Refresh();
             changeVisibility(false);
+            taskBarItemInfo.ProgressState = TaskbarItemProgressState.None;
         }
 
         private void do_exchange_Click(object sender, RoutedEventArgs e)

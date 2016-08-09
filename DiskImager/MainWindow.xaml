@@ -13,6 +13,10 @@
         <local:DriveDescription x:Key="DriveDescription"/>
         <local:SourceDescription x:Key="SourceDescription"/>
     </Window.Resources>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="taskBarItemInfo">
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="170"/>
